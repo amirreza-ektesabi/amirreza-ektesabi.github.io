@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Amirreza Ektesabi — Backend Developer</title>
+<meta name="description" content="Personal homepage of Amirreza Ektesabi, a backend developer working with Python and Django, based in Shiraz, Iran. Experience, projects, education, and contact information." />
+<meta name="theme-color" content="#0f0f0f" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Amirreza Ektesabi — Backend Developer" />
+<meta property="og:description" content="Backend developer working with Python and Django, based in Shiraz, Iran." />
+<meta property="og:image" content="image.jpg" />
+
+<!-- Inline theme bootstrap: applied before first paint to avoid a flash of the wrong theme -->
+<script>
+  (function () {
+    try {
+      var saved = localStorage.getItem("theme");
+      var theme = saved || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    } catch (e) {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<main>
+
+  <!-- ============ Header ============ -->
+  <header class="site-header">
+    <div class="header-top">
+      <img
+        class="avatar"
+        src="image.jpg"
+        alt="Amirreza Ektesabi"
+        width="84"
+        height="84"
+      />
+
+      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+        [dark]
+      </button>
+    </div>
+
+    <h1 class="name">Amirreza Ektesabi</h1>
+    <p class="title">Backend Developer · Python &amp; Django · Exploring AI/ML</p>
+    <p class="location">Shiraz, Iran</p>
+
+    <nav class="header-links" aria-label="Profile links">
+      <a href="https://github.com/amirreza-ektesabi" target="_blank" rel="noopener noreferrer">[GitHub]</a>
+      <a href="https://stackoverflow.com/users/16004568" target="_blank" rel="noopener noreferrer">[Stack Overflow]</a>
+      <a href="https://www.linkedin.com/in/amirreza-ektesabi/" target="_blank" rel="noopener noreferrer">[LinkedIn]</a>
+      <a href="mailto:ar.ektesabi@gmail.com">[Email]</a>
+      <a href="resume.pdf" target="_blank" rel="noopener noreferrer">[Resume]</a>
+    </nav>
+  </header>
+
+  <!-- ============ About ============ -->
+  <section id="about" aria-labelledby="about-heading">
+    <h2 id="about-heading" class="section-heading">--- About ---</h2>
+    <p>
+      Backend Developer with a Bachelor's degree in Computer Engineering
+      and close to four years of experience working with Python, Django,
+      PostgreSQL, and related backend technologies. Currently exploring
+      Machine Learning, Deep Learning, and AI-driven applications. When
+      I'm not writing code, you'll probably find me taking pictures,
+      watching anime, or getting distracted by a cat.
+    </p>
+  </section>
+
+  <!-- ============ Experience ============ -->
+  <section id="experience" aria-labelledby="experience-heading">
+    <h2 id="experience-heading" class="section-heading">--- Experience ---</h2>
+
+    <article class="entry">
+      <p class="entry-title">Backend Developer · <a href="https://www.systemgroup.net" target="_blank" rel="noopener noreferrer">System Group</a></p>
+      <p class="entry-meta">Full-time · Remote · Mar 2026 – Aug 2026 (6 mos)</p>
+      <p class="entry-description">
+        Worked as a backend developer on Afra, a management infrastructure
+        platform for charitable organizations, consisting of three
+        management panels.
+      </p>
+      <ul class="entry-list">
+        <li>Developed and maintained backend features using Python, Django, Microsoft SQL Server, and Django Templates.</li>
+        <li>Implemented new features and refactored legacy code to improve maintainability and application quality.</li>
+        <li>Leveraged AI agents as part of the software development workflow to accelerate feature implementation and development tasks.</li>
+        <li>Worked with IIS for application deployment and server configuration.</li>
+      </ul>
+      <p class="entry-tech-label">Technologies:</p>
+      <p class="entry-tech">Python · Django · Microsoft SQL Server · Django Templates · IIS</p>
+    </article>
+
+    <article class="entry">
+      <p class="entry-title">Backend Developer · <a href="https://www.systemgroup.net" target="_blank" rel="noopener noreferrer">System Group</a></p>
+      <p class="entry-meta">Full-time · Remote · Oct 2022 – Mar 2026 (3 yrs 6 mos)</p>
+      <p class="entry-description">
+        Worked as a backend developer on Farsan, an intelligent order
+        management system consisting of a mobile/web application and
+        three management panels.
+      </p>
+      <ul class="entry-list">
+        <li>Developed and maintained backend features using Python, Django, PostgreSQL, and Celery.</li>
+        <li>Implemented real-time functionality using WebSockets and server-side features with Django Templates.</li>
+        <li>Refactored existing code and improved application performance, efficiency, and maintainability.</li>
+        <li>Worked with Elasticsearch and Kibana for application logging, monitoring, and troubleshooting.</li>
+        <li>Worked with IIS for application deployment and server configuration.</li>
+      </ul>
+      <p class="entry-tech-label">Technologies:</p>
+      <p class="entry-tech">Python · Django · PostgreSQL · Celery · WebSocket · Elastic Stack (ELK) · Kibana · IIS</p>
+    </article>
+  </section>
+
+  <!-- ============ Projects ============ -->
+  <section id="projects" aria-labelledby="projects-heading">
+    <h2 id="projects-heading" class="section-heading">--- Projects ---</h2>
+
+    <article class="entry">
+      <p class="entry-title">CSE Archive</p>
+      <p class="entry-description">
+        A website for showcasing accumulated resources and references,
+        alongside an admin panel for site management. The project is
+        split into backend, frontend, and Telegram bot components; I
+        contributed to the backend and the Telegram bot.
+      </p>
+      <ul class="entry-list">
+        <li>The site's backend, implemented in Python using the Django framework.</li>
+        <li>A Telegram bot that lets users communicate with administrators, built with the python-telegram-bot library.</li>
+      </ul>
+      <p class="entry-tech-label">Technologies:</p>
+      <p class="entry-tech">Python · Django · python-telegram-bot</p>
+      <p class="entry-links">
+        <a href="https://github.com/CSE-Archive/archive-api" target="_blank" rel="noopener noreferrer">[Backend Repo]</a>
+        <a href="https://github.com/CSE-Archive/archive-telegram-bot" target="_blank" rel="noopener noreferrer">[Telegram Bot Repo]</a>
+      </p>
+    </article>
+
+    <article class="entry">
+      <p class="entry-title">CODOO</p>
+      <p class="entry-description">
+        Real-time coding duels — a competitive programming platform where
+        participants race head-to-head through timed problems on a
+        shared, live-updating scoreboard. Pairs a Django + Django Channels
+        backend (real-time WebSocket state, Celery-scheduled matches) with
+        a React + Monaco Editor frontend, running all submitted code in a
+        sandboxed Judge0 execution engine.
+      </p>
+      <p class="entry-tech-label">Technologies:</p>
+      <p class="entry-tech">Django · Django Channels · Celery · React · Monaco Editor · Judge0</p>
+      <p class="entry-links">
+        <a href="https://github.com/amirreza-ektesabi/codoo" target="_blank" rel="noopener noreferrer">[GitHub Repo]</a>
+      </p>
+    </article>
+  </section>
+
+  <!-- ============ Education ============ -->
+  <section id="education" aria-labelledby="education-heading">
+    <h2 id="education-heading" class="section-heading">--- Education ---</h2>
+
+    <article class="entry entry-compact">
+      <p class="entry-title">Bachelor of Engineering, Computer Engineering</p>
+      <p class="entry-meta">Shiraz University · Sep 2019 – Sep 2024</p>
+    </article>
+
+    <article class="entry entry-compact">
+      <p class="entry-title">High School Diploma, Mathematics</p>
+      <p class="entry-meta">National Organization for Development of Exceptional Talents (Sampad) · Sep 2013 – Sep 2019</p>
+    </article>
+  </section>
+
+  <!-- ============ Teaching ============ -->
+  <section id="teaching" aria-labelledby="teaching-heading">
+    <h2 id="teaching-heading" class="section-heading">--- Teaching ---</h2>
+
+    <article class="entry entry-compact">
+      <p class="entry-title">Teaching Assistant · Fundamentals of Computer and Programming</p>
+      <p class="entry-meta">Shiraz University · Oct 2020 – Feb 2021 (5 mos)</p>
+      <p class="entry-description">
+        Teaching Assistant for the Fundamentals of Computer and Programming
+        course under <a href="https://scholar.google.com/citations?user=3shbBG4AAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Dr. Morteza Keshtkaran</a>, supporting students with
+        Python programming concepts, exercises, and problem-solving
+        throughout the semester.
+      </p>
+      <p class="entry-tech-label">Technologies:</p>
+      <p class="entry-tech">Python</p>
+    </article>
+  </section>
+
+  <!-- ============ Contact ============ -->
+  <section id="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading" class="section-heading">--- Contact ---</h2>
+    <p>Interested in getting in touch?</p>
+    <p class="header-links">
+      <a href="https://github.com/amirreza-ektesabi" target="_blank" rel="noopener noreferrer">[GitHub]</a>
+      <a href="https://stackoverflow.com/users/16004568" target="_blank" rel="noopener noreferrer">[Stack Overflow]</a>
+      <a href="https://www.linkedin.com/in/amirreza-ektesabi/" target="_blank" rel="noopener noreferrer">[LinkedIn]</a>
+      <a href="mailto:ar.ektesabi@gmail.com">[Email]</a>
+    </p>
+  </section>
+
+  <footer class="site-footer">
+    <p>© 2026 Amirreza Ektesabi</p>
+    <p>Built with HTML, CSS &amp; JavaScript.</p>
+  </footer>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

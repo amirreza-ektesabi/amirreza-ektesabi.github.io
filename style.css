@@ -1,0 +1,343 @@
+/* ==========================================================================
+   Theme tokens
+   ========================================================================== */
+
+:root {
+  --background: #f0efe9;
+  --surface: #ffffff;
+  --text: #1e1e1e;
+  --muted: #6b6b64;
+  --accent: #1c7a3c;
+  --accent-dim: #3f8f5c;
+  --border: #d8d6cc;
+
+  --content-width: 720px;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.75rem;
+  --space-4: 3rem;
+  --space-5: 4.5rem;
+}
+
+[data-theme="dark"] {
+  --background: #10120f;
+  --surface: #000000;
+  --text: #cfd0c9;
+  --muted: #7c7d75;
+  --accent: #3ecf6b;
+  --accent-dim: #2e9e51;
+  --border: #2a2c26;
+}
+
+/* ==========================================================================
+   Reset / Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: "Space Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+p {
+  margin: 0 0 var(--space-2) 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1,
+h2 {
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.name {
+  font-size: 1.5rem;
+  margin-top: var(--space-2);
+}
+
+.title {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: 0.35rem;
+}
+
+.tagline {
+  margin-top: var(--space-2);
+  max-width: 56ch;
+}
+
+.location {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 0.35rem;
+}
+
+.section-heading {
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+main {
+  width: min(50vw, var(--content-width));
+  min-width: 320px;
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-2) var(--space-5) var(--space-2);
+}
+
+section {
+  margin-top: var(--space-4);
+}
+
+section:first-of-type {
+  margin-top: var(--space-4);
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.site-header {
+  padding-bottom: var(--space-3);
+}
+
+.header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  object-fit: cover;
+}
+
+.header-links {
+  margin-top: var(--space-2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-3);
+}
+
+/* ==========================================================================
+   Theme toggle
+   ========================================================================== */
+
+.theme-toggle {
+  appearance: none;
+  background: none;
+  border: none;
+  padding: 0.2rem 0.1rem;
+  margin-top: 0.15rem;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+}
+
+.theme-toggle:focus-visible {
+  outline: 1px dashed var(--accent);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-dim);
+  text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 1px dashed var(--accent);
+  outline-offset: 2px;
+}
+
+a[aria-disabled="true"] {
+  color: var(--muted);
+  cursor: default;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Sections / entries
+   ========================================================================== */
+
+.entry {
+  margin-bottom: var(--space-3);
+}
+
+.entry:last-child {
+  margin-bottom: 0;
+}
+
+.entry-compact {
+  margin-bottom: var(--space-2);
+}
+
+.entry-title {
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.entry-meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-2);
+}
+
+.entry-description {
+  margin-bottom: var(--space-2);
+  max-width: 62ch;
+}
+
+.entry-list {
+  margin: 0 0 var(--space-2) 0;
+  padding-left: 1.1em;
+  max-width: 62ch;
+  color: var(--text);
+}
+
+.entry-list li {
+  margin-bottom: 0.35rem;
+}
+
+.entry-list li::marker {
+  color: var(--accent);
+}
+
+.entry-tech-label {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.2rem;
+}
+
+.entry-tech {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+.entry-links {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* ==========================================================================
+   Skills
+   ========================================================================== */
+
+.skill-group {
+  margin-bottom: var(--space-2);
+}
+
+.skill-group-title {
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.skill-list {
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  margin-top: var(--space-5);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.site-footer p {
+  margin: 0 0 0.25rem 0;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  main {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: var(--space-3);
+  }
+
+  .name {
+    font-size: 1.3rem;
+  }
+
+  .avatar {
+    width: 64px;
+    height: 64px;
+  }
+
+  section {
+    margin-top: var(--space-3);
+  }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
