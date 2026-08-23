@@ -138,10 +138,7 @@ section:first-of-type {
 
 .avatar {
   width: 84px;
-  height: 84px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  object-fit: cover;
+  height: auto;
 }
 
 .header-links {
@@ -353,7 +350,6 @@ em {
 
   .avatar {
     width: 64px;
-    height: 64px;
   }
 
   section {
