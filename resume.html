@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Amirreza Ektesabi — Resume</title>
+<style>
+  @page {
+    size: A4;
+    margin: 10mm 17mm;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Liberation Sans", Arial, "DejaVu Sans", sans-serif;
+    font-size: 9.1pt;
+    line-height: 1.33;
+    color: #262626;
+  }
+
+  .accent {
+    color: #1c7a3c;
+  }
+
+  .muted {
+    color: #6b6b64;
+  }
+
+  /* ---------- Header ---------- */
+
+  header {
+    text-align: center;
+    margin-bottom: 6pt;
+  }
+
+  h1 {
+    font-size: 18pt;
+    font-weight: 700;
+    color: #1c7a3c;
+    margin: 0 0 2pt 0;
+    letter-spacing: 0.01em;
+  }
+
+  .title-line {
+    font-size: 9.3pt;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 4pt 0;
+  }
+
+  .contact-line {
+    font-size: 8.5pt;
+    color: #444;
+  }
+
+  .contact-line a {
+    color: #1c7a3c;
+    text-decoration: none;
+  }
+
+  .contact-sep {
+    color: #b7b5aa;
+    margin: 0 5pt;
+  }
+
+  /* ---------- Section headings ---------- */
+
+  .section-heading {
+    font-size: 9.8pt;
+    font-weight: 700;
+    color: #1c7a3c;
+    border-bottom: 1.4pt solid #1c7a3c;
+    padding-bottom: 1.5pt;
+    margin: 6pt 0 3.5pt 0;
+  }
+
+  section:first-of-type .section-heading {
+    margin-top: 0;
+  }
+
+  /* ---------- Generic text ---------- */
+
+  p {
+    margin: 0 0 3pt 0;
+  }
+
+  ul {
+    margin: 0 0 2.5pt 0;
+    padding-left: 12pt;
+  }
+
+  li {
+    margin-bottom: 1pt;
+  }
+
+  /* ---------- Entries with right-aligned dates ---------- */
+
+  .entry {
+    margin-bottom: 3.5pt;
+  }
+
+  .entry:last-child {
+    margin-bottom: 0;
+  }
+
+  .entry-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8pt;
+  }
+
+  .entry-title {
+    font-weight: 700;
+  }
+
+  .entry-org {
+    font-weight: 400;
+  }
+
+  .entry-date {
+    font-size: 8.4pt;
+    color: #6b6b64;
+    white-space: nowrap;
+  }
+
+  .entry-sub {
+    font-size: 8.5pt;
+    color: #6b6b64;
+    margin-bottom: 2pt;
+  }
+
+  .entry-links {
+    font-size: 8.3pt;
+    color: #6b6b64;
+  }
+
+  .entry-links a {
+    color: #1c7a3c;
+    text-decoration: none;
+  }
+
+  /* ---------- Compact single-line groups (skills, languages) ---------- */
+
+  .group-line {
+    margin-bottom: 3pt;
+  }
+
+  .group-label {
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>Amirreza Ektesabi</h1>
+    <p class="title-line">Backend Engineer &middot; Python &amp; Django &middot; Exploring Machine Learning</p>
+    <p class="contact-line">
+      Shiraz, Iran
+      <span class="contact-sep">&middot;</span>
+      <a href="tel:+989215870473">+98 921 587 0473</a>
+      <span class="contact-sep">&middot;</span>
+      <a href="mailto:ar.ektesabi@gmail.com">ar.ektesabi@gmail.com</a>
+      <span class="contact-sep">&middot;</span>
+      <a href="https://amirreza-ektesabi.github.io/">Portfolio</a>
+      <span class="contact-sep">&middot;</span>
+      <a href="https://github.com/amirreza-ektesabi">GitHub Profile</a>
+      <span class="contact-sep">&middot;</span>
+      <a href="https://www.linkedin.com/in/amirreza-ektesabi/">LinkedIn Profile</a>
+    </p>
+  </header>
+
+  <section>
+    <p class="section-heading">Profile Summary</p>
+    <ul>
+      <li>Backend engineer with a Bachelor's degree in Computer Engineering and close to four years of experience building production systems with Python, Django, and PostgreSQL across two major platforms at System Group.</li>
+      <li>Delivered real-time features with WebSockets and Django Channels, integrated AI agents into the development workflow, and used Elasticsearch and Kibana for production monitoring and troubleshooting.</li>
+      <li>Built and shipped independent projects, including a real-time competitive coding platform (CODOO) and an educational resource archive with a companion Telegram bot (CSE Archive).</li>
+      <li><em style="font-style: italic;">Currently exploring Machine Learning and AI-driven applications</em>, with prior teaching experience in programming fundamentals at Shiraz University.</li>
+    </ul>
+  </section>
+
+  <section>
+    <p class="section-heading">Technical Skills</p>
+    <p class="group-line"><span class="group-label">Backend:</span> Python, Django, Django REST Framework, Django Channels, Celery, WebSocket</p>
+    <p class="group-line"><span class="group-label">Databases &amp; Infrastructure:</span> PostgreSQL, Microsoft SQL Server, Elasticsearch, Kibana, IIS</p>
+    <p class="group-line"><span class="group-label">Other:</span> React, Next.js, Bootstrap, Tailwind CSS, python-telegram-bot</p>
+    <p class="group-line"><span class="group-label">Platforms:</span> Linux (Ubuntu), macOS, Windows</p>
+  </section>
+
+  <section>
+    <p class="section-heading">Education</p>
+
+    <div class="entry">
+      <div class="entry-row">
+        <span><span class="entry-title">B.Eng.</span> <span class="entry-org">Shiraz University, Computer Engineering</span></span>
+        <span class="entry-date">2019 &ndash; 2024</span>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-row">
+        <span><span class="entry-title">High School Diploma</span> <span class="entry-org">Sampad, Mathematics</span></span>
+        <span class="entry-date">2013 &ndash; 2019</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-heading">Experience</p>
+
+    <div class="entry">
+      <div class="entry-row">
+        <span class="entry-title">Backend Engineer</span>
+        <span class="entry-date">Mar 2026 &ndash; Aug 2026</span>
+      </div>
+      <p class="entry-sub">System Group &middot; Full-time &middot; Remote</p>
+      <ul>
+        <li>Developed and maintained backend features for Afra, a management platform for charitable organizations, using Python, Django, Microsoft SQL Server, and Django Templates.</li>
+        <li>Refactored legacy code to improve maintainability and integrated AI agents into the development workflow to accelerate feature delivery.</li>
+        <li>Managed application deployment and server configuration via IIS.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <div class="entry-row">
+        <span class="entry-title">Backend Engineer</span>
+        <span class="entry-date">Oct 2022 &ndash; Mar 2026</span>
+      </div>
+      <p class="entry-sub">System Group &middot; Full-time &middot; Remote</p>
+      <ul>
+        <li>Developed and maintained backend features for Farsan, an intelligent order management system, using Python, Django, PostgreSQL, and Celery.</li>
+        <li>Implemented real-time functionality with WebSockets and improved application performance, efficiency, and maintainability.</li>
+        <li>Used Elasticsearch and Kibana for application logging, monitoring, and troubleshooting; deployed via IIS.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-heading">Projects</p>
+
+    <div class="entry">
+      <p class="entry-title">CODOO</p>
+      <p class="entry-sub">Real-time competitive coding duel platform with a live scoreboard</p>
+      <ul>
+        <li>Django + Django Channels backend with real-time WebSocket state and Celery-scheduled matches; React + Monaco Editor frontend.</li>
+        <li>Submitted code runs in a sandboxed Judge0 execution engine.</li>
+      </ul>
+      <p class="entry-links">github.com/amirreza-ektesabi/codoo</p>
+    </div>
+
+    <div class="entry">
+      <p class="entry-title">CSE Archive</p>
+      <p class="entry-sub">Educational resource archive site with an admin panel and Telegram bot</p>
+      <ul>
+        <li>Built the site's backend in Python/Django and a Telegram bot (python-telegram-bot) for user–administrator communication.</li>
+      </ul>
+      <p class="entry-links">github.com/CSE-Archive/archive-api &middot; github.com/CSE-Archive/archive-telegram-bot</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-heading">Teaching</p>
+    <div class="entry">
+      <div class="entry-row">
+        <span><span class="entry-title">Teaching Assistant</span> <span class="entry-org">&mdash; Fundamentals of Computer and Programming, Shiraz University</span></span>
+        <span class="entry-date">Oct 2020 &ndash; Feb 2021</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-heading">Languages</p>
+    <p class="group-line"><span class="group-label">Persian:</span> Native &middot; <span class="group-label">English:</span> Working proficiency, currently improving</p>
+  </section>
+
+</body>
+</html>
