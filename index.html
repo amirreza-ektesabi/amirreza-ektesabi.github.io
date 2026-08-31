@@ -45,21 +45,36 @@
         width="84"
       />
 
-      <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
-        [dark]
-      </button>
+      <div class="header-buttons">
+        <button id="play-toggle" class="theme-toggle" type="button" aria-pressed="false">
+          [play]
+        </button>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+          [dark]
+        </button>
+      </div>
     </div>
+
+    <!-- Minesweeper takes the avatar's place while playing -->
+    <section id="minesweeper" class="minesweeper-section" hidden>
+      <div class="ms-header">
+        <span id="ms-status" class="ms-status">mines: 0</span>
+        <a href="#" id="ms-replay" class="ms-replay">[replay]</a>
+      </div>
+      <div id="ms-board" class="ms-board"></div>
+      <p class="ms-hint">click to reveal &middot; right-click or hold to flag</p>
+    </section>
 
     <h1 class="name">Amirreza Ektesabi</h1>
     <p class="title">Backend Engineer · Python &amp; Django · Exploring AI/ML</p>
     <p class="location">Shiraz, Iran</p>
 
     <nav class="header-links" aria-label="Profile links">
-      <a href="tel:+989215870473">+98 921 587 0473</a>
-      <a href="mailto:ar.ektesabi@gmail.com">ar.ektesabi@gmail.com</a>
       <a href="https://github.com/amirreza-ektesabi" target="_blank" rel="noopener noreferrer">[GitHub]</a>
       <a href="https://www.linkedin.com/in/amirreza-ektesabi/" target="_blank" rel="noopener noreferrer">[LinkedIn]</a>
       <a href="https://stackoverflow.com/users/16004568" target="_blank" rel="noopener noreferrer">[Stack Overflow]</a>
+      <a href="mailto:ar.ektesabi@gmail.com">ar.ektesabi@gmail.com</a>
+      <a href="tel:+989215870473">+98 921 587 0473</a>
       <a href="resume.pdf" target="_blank" rel="noopener noreferrer">[Resume]</a>
     </nav>
   </header>
@@ -69,8 +84,8 @@
     <h2 id="open-to-work-heading" class="section-heading">--- Open to Work</h2>
     <p>
       Currently looking for a <em>Backend</em> role working with
-      <em>Python</em>, either <em>fully remote</em> or with a
-      company based in <em>Shiraz, Iran</em>.
+      <em>Python</em> and <em>Django</em>, either fully remote or with a
+      company based in Shiraz, Iran.
     </p>
   </section>
 
@@ -193,6 +208,11 @@
     <div class="skill-group">
       <p class="skill-group-title">Platforms</p>
       <p class="skill-list">Linux (Ubuntu) · macOS · Windows</p>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-group-title">AI-Assisted Development</p>
+      <p class="skill-list">AI Agents · Vibe Coding · Context Management · Prompt Engineering</p>
     </div>
   </section>
 

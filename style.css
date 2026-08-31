@@ -149,9 +149,30 @@ section:first-of-type {
   gap: var(--space-2);
 }
 
+/* The hidden attribute must win even over author display rules (e.g. img) */
+[hidden] {
+  display: none !important;
+}
+
 .avatar {
   width: 84px;
   height: auto;
+  filter:
+    drop-shadow(1.5px 0 0 #ffffff)
+    drop-shadow(-1.5px 0 0 #ffffff)
+    drop-shadow(0 1.5px 0 #ffffff)
+    drop-shadow(0 -1.5px 0 #ffffff)
+    drop-shadow(1.5px 1.5px 0 #ffffff)
+    drop-shadow(-1.5px -1.5px 0 #ffffff)
+    drop-shadow(1.5px -1.5px 0 #ffffff)
+    drop-shadow(-1.5px 1.5px 0 #ffffff);
+}
+
+/* While the minesweeper is open, shrink the avatar to the button-row height
+   instead of hiding it */
+.avatar.ms-shrunk {
+  width: auto;
+  height: 28px;
 }
 
 .header-links {
@@ -185,6 +206,12 @@ section:first-of-type {
 .theme-toggle:focus-visible {
   outline: 1px dashed var(--accent);
   outline-offset: 3px;
+}
+
+.header-buttons {
+  display: flex;
+  gap: var(--space-2);
+  margin-left: auto; /* stay right-aligned even when the avatar is hidden */
 }
 
 /* ==========================================================================
@@ -336,6 +363,113 @@ em {
 
 .site-footer p {
   margin: 0 0 0.25rem 0;
+}
+
+/* ==========================================================================
+   Minesweeper
+   ========================================================================== */
+
+.minesweeper-section {
+  margin-top: 0; /* sits right under the header row, full content width */
+}
+
+.ms-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--space-2);
+}
+
+.ms-status {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.ms-status.win {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.ms-status.lose {
+  color: #e24b4a;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.ms-replay {
+  font-size: 0.85rem;
+}
+
+.ms-board {
+  display: grid;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  width: 100%;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+
+.ms-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.ms-cell.hidden-cell {
+  background: var(--background);
+}
+
+.ms-cell.hidden-cell:hover {
+  background: var(--border);
+}
+
+.ms-cell.flag {
+  color: #e24b4a;
+}
+
+[data-theme="dark"] .ms-cell.flag {
+  color: #ff6b6a;
+}
+
+.ms-cell.mine img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ms-cell.mine.exploded {
+  background: #e24b4a;
+}
+
+/* On a win, highlight the revealed mine cells with the main accent color */
+.ms-board.win .ms-cell.mine {
+  background: var(--accent);
+}
+
+.ms-cell.n1 { color: #6fa8dc; }
+.ms-cell.n2 { color: var(--accent); }
+.ms-cell.n3 { color: #e08a2e; }
+.ms-cell.n4 { color: #9b8fd6; }
+.ms-cell.n5 { color: #b5705a; }
+.ms-cell.n6 { color: #5fc4c4; }
+.ms-cell.n7 { color: var(--text); }
+.ms-cell.n8 { color: var(--muted); }
+
+.ms-hint {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-top: var(--space-2);
+  margin-bottom: 0;
 }
 
 /* ==========================================================================
