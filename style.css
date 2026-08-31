@@ -157,15 +157,6 @@ section:first-of-type {
 .avatar {
   width: 84px;
   height: auto;
-  filter:
-    drop-shadow(1.5px 0 0 #ffffff)
-    drop-shadow(-1.5px 0 0 #ffffff)
-    drop-shadow(0 1.5px 0 #ffffff)
-    drop-shadow(0 -1.5px 0 #ffffff)
-    drop-shadow(1.5px 1.5px 0 #ffffff)
-    drop-shadow(-1.5px -1.5px 0 #ffffff)
-    drop-shadow(1.5px -1.5px 0 #ffffff)
-    drop-shadow(-1.5px 1.5px 0 #ffffff);
 }
 
 /* While the minesweeper is open, shrink the avatar to the button-row height
@@ -422,6 +413,8 @@ em {
   font-weight: 700;
   cursor: pointer;
   line-height: 1;
+  /* faster taps on mobile (no double-tap-zoom delay) */
+  touch-action: manipulation;
 }
 
 .ms-cell.hidden-cell {

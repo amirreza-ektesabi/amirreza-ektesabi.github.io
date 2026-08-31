@@ -321,6 +321,17 @@
   function attachCellEvents(cellEl, r, c) {
     var pressTimer = null;
     var longPressFired = false;
+    var touchActive = false;
+    var touchMoved = false;
+    var startX = 0;
+    var startY = 0;
+
+    function clearPress() {
+      if (pressTimer) {
+        clearTimeout(pressTimer);
+        pressTimer = null;
+      }
+    }
 
     cellEl.addEventListener("click", function () {
       if (longPressFired) {
@@ -337,6 +348,9 @@
 
     cellEl.addEventListener("contextmenu", function (e) {
       e.preventDefault();
+      // Mobile long-press fires contextmenu too; the touch timer already
+      // flagged the cell, so skip to avoid toggling the flag twice.
+      if (touchActive || longPressFired) return;
       handleFlag(r, c);
     });
 
@@ -344,35 +358,60 @@
     cellEl.addEventListener("mousedown", function (e) {
       if (e.button !== 0) return;
       longPressFired = false;
+      clearPress();
       pressTimer = setTimeout(function () {
+        pressTimer = null;
         longPressFired = true;
         handleFlag(r, c);
       }, LONG_PRESS_MS);
     });
 
     cellEl.addEventListener("mouseup", function () {
-      clearTimeout(pressTimer);
+      clearPress();
     });
 
     cellEl.addEventListener("mouseleave", function () {
-      clearTimeout(pressTimer);
+      clearPress();
     });
 
-    cellEl.addEventListener("touchstart", function () {
+    cellEl.addEventListener("touchstart", function (e) {
+      if (e.touches.length !== 1) {
+        clearPress();
+        return;
+      }
+      touchActive = true;
+      touchMoved = false;
       longPressFired = false;
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+      clearPress();
       pressTimer = setTimeout(function () {
+        pressTimer = null;
         longPressFired = true;
         handleFlag(r, c);
       }, LONG_PRESS_MS);
     }, { passive: true });
 
-    cellEl.addEventListener("touchend", function () {
-      clearTimeout(pressTimer);
+    cellEl.addEventListener("touchmove", function (e) {
+      if (!touchActive) return;
+      var t = e.touches[0];
+      // Cancel only on a real drag, not on finger jitter while holding
+      if (Math.abs(t.clientX - startX) > 10 || Math.abs(t.clientY - startY) > 10) {
+        touchMoved = true;
+        clearPress();
+      }
+    }, { passive: true });
+
+    cellEl.addEventListener("touchend", function (e) {
+      clearPress();
+      // Suppress the synthetic click that follows a long-press flag or drag
+      if (longPressFired || touchMoved) e.preventDefault();
+      touchActive = false;
     });
 
-    cellEl.addEventListener("touchmove", function () {
-      clearTimeout(pressTimer);
-      longPressFired = false;
+    cellEl.addEventListener("touchcancel", function () {
+      clearPress();
+      touchActive = false;
     });
   }
 
