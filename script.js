@@ -320,24 +320,43 @@
 
   function attachCellEvents(cellEl, r, c) {
     var pressTimer = null;
-    var longPressFired = false;
+    var pressSeq = 0; // bumped whenever a press ends; stale timers become no-ops
+    var flagActionDone = false; // this press already flagged once — lock it
     var touchActive = false;
     var touchMoved = false;
+    var lastTouchAt = 0;
     var startX = 0;
     var startY = 0;
 
-    function clearPress() {
+    function cancelPendingFlag() {
+      pressSeq++;
       if (pressTimer) {
         clearTimeout(pressTimer);
         pressTimer = null;
       }
     }
 
+    function armHoldFlag() {
+      cancelPendingFlag();
+      var myPress = pressSeq;
+      pressTimer = setTimeout(function () {
+        pressTimer = null;
+        // Fire at most once per press: once the hold placed the flag,
+        // nothing that happens while still holding may toggle it again.
+        if (myPress !== pressSeq || flagActionDone) return;
+        flagActionDone = true;
+        handleFlag(r, c);
+      }, LONG_PRESS_MS);
+    }
+
+    // Mobile browsers synthesize compat mouse/contextmenu events around a
+    // touch press; acting on them is what made long holds toggle twice.
+    function isTouchGhost() {
+      return touchActive || Date.now() - lastTouchAt < 1000;
+    }
+
     cellEl.addEventListener("click", function () {
-      if (longPressFired) {
-        longPressFired = false;
-        return;
-      }
+      if (flagActionDone) return; // this press already flagged; eat its click
       var cell = cells[index(r, c)];
       if (cell.revealed) {
         handleChord(r, c);
@@ -348,69 +367,62 @@
 
     cellEl.addEventListener("contextmenu", function (e) {
       e.preventDefault();
-      // Mobile long-press fires contextmenu too; the touch timer already
-      // flagged the cell, so skip to avoid toggling the flag twice.
-      if (touchActive || longPressFired) return;
+      if (isTouchGhost() || flagActionDone) return;
       handleFlag(r, c);
     });
 
     // Hold to flag, works on desktop too (left button held for LONG_PRESS_MS)
     cellEl.addEventListener("mousedown", function (e) {
+      if (isTouchGhost()) return;
+      flagActionDone = false; // a real mouse press is a new press
       if (e.button !== 0) return;
-      longPressFired = false;
-      clearPress();
-      pressTimer = setTimeout(function () {
-        pressTimer = null;
-        longPressFired = true;
-        handleFlag(r, c);
-      }, LONG_PRESS_MS);
+      armHoldFlag();
     });
 
     cellEl.addEventListener("mouseup", function () {
-      clearPress();
+      cancelPendingFlag();
     });
 
     cellEl.addEventListener("mouseleave", function () {
-      clearPress();
+      cancelPendingFlag();
     });
 
     cellEl.addEventListener("touchstart", function (e) {
+      lastTouchAt = Date.now();
       if (e.touches.length !== 1) {
-        clearPress();
+        cancelPendingFlag();
         return;
       }
       touchActive = true;
       touchMoved = false;
-      longPressFired = false;
+      flagActionDone = false;
       startX = e.touches[0].clientX;
       startY = e.touches[0].clientY;
-      clearPress();
-      pressTimer = setTimeout(function () {
-        pressTimer = null;
-        longPressFired = true;
-        handleFlag(r, c);
-      }, LONG_PRESS_MS);
+      armHoldFlag();
     }, { passive: true });
 
     cellEl.addEventListener("touchmove", function (e) {
       if (!touchActive) return;
+      lastTouchAt = Date.now();
       var t = e.touches[0];
       // Cancel only on a real drag, not on finger jitter while holding
       if (Math.abs(t.clientX - startX) > 10 || Math.abs(t.clientY - startY) > 10) {
         touchMoved = true;
-        clearPress();
+        cancelPendingFlag();
       }
     }, { passive: true });
 
     cellEl.addEventListener("touchend", function (e) {
-      clearPress();
+      lastTouchAt = Date.now();
+      cancelPendingFlag();
       // Suppress the synthetic click that follows a long-press flag or drag
-      if (longPressFired || touchMoved) e.preventDefault();
+      if (flagActionDone || touchMoved) e.preventDefault();
       touchActive = false;
     });
 
     cellEl.addEventListener("touchcancel", function () {
-      clearPress();
+      lastTouchAt = Date.now();
+      cancelPendingFlag();
       touchActive = false;
     });
   }
