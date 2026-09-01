@@ -49,14 +49,15 @@
   var LONG_PRESS_MS = 500;
   var AVATAR_SRC = "image.png";
 
-  var playToggle = document.getElementById("play-toggle");
   var section = document.getElementById("minesweeper");
   var boardEl = document.getElementById("ms-board");
   var statusEl = document.getElementById("ms-status");
   var replayEl = document.getElementById("ms-replay");
+  var msClose = document.getElementById("ms-close");
   var avatarEl = document.querySelector(".avatar");
+  var hintEl = document.getElementById("avatar-hint");
 
-  if (!playToggle || !section || !boardEl || !statusEl || !replayEl || !avatarEl) return;
+  if (!msClose || !section || !boardEl || !statusEl || !replayEl || !avatarEl || !hintEl) return;
 
   var cols = 0;
   var rows = 0;
@@ -68,6 +69,7 @@
   var revealedCount = 0;
   var flaggedCount = 0;
   var initialized = false;
+  var hintDismissed = false;
 
   function index(r, c) {
     return r * cols + c;
@@ -198,6 +200,7 @@
 
     el.textContent = cell.adjacent > 0 ? String(cell.adjacent) : "";
     if (cell.adjacent > 0) el.classList.add("n" + cell.adjacent);
+    el.classList.add("revealed");
   }
 
   function reveal(r, c) {
@@ -221,7 +224,7 @@
     for (var r = 0; r < rows; r++) {
       for (var c = 0; c < cols; c++) {
         var cell = cells[index(r, c)];
-        if (cell.mine) {
+        if (cell.mine && !cell.flagged) {
           cell.revealed = true;
           renderCell(r, c);
         }
@@ -432,19 +435,31 @@
     initialized = true;
   }
 
-  playToggle.addEventListener("click", function () {
+  function toggleSection() {
     var isHidden = section.hasAttribute("hidden");
     if (isHidden) {
       section.removeAttribute("hidden");
       avatarEl.classList.add("ms-shrunk");
-      playToggle.textContent = "[close]";
-      // Rebuild so the board is sized against its visible width
+      msClose.hidden = false;
+      hintDismissed = true;
+      hintEl.hidden = true;
       startGame();
     } else {
       section.setAttribute("hidden", "");
       avatarEl.classList.remove("ms-shrunk");
-      playToggle.textContent = "[play]";
+      msClose.hidden = true;
+      if (!hintDismissed) hintEl.hidden = false;
     }
+  }
+
+  msClose.addEventListener("click", function (e) {
+    e.stopPropagation();
+    toggleSection();
+  });
+
+  avatarEl.addEventListener("click", function () {
+    if (!initialized) startGame();
+    toggleSection();
   });
 
   // Keep cell size constant: rebuild (and restart) when the column count

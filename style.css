@@ -5,11 +5,13 @@
 :root {
   --background: #f0efe9;
   --surface: #ffffff;
+  --surface-revealed: #fbfaf5;
   --text: #1e1e1e;
   --muted: #6b6b64;
   --accent: #1c7a3c;
   --accent-dim: #3f8f5c;
   --border: #d8d6cc;
+  --border-faded: rgba(216, 214, 204, 0.35);
 
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -24,11 +26,13 @@
 [data-theme="dark"] {
   --background: #10120f;
   --surface: #000000;
+  --surface-revealed: #161712;
   --text: #cfd0c9;
   --muted: #7c7d75;
   --accent: #3ecf6b;
   --accent-dim: #2e9e51;
   --border: #2a2c26;
+  --border-faded: rgba(42, 44, 38, 0.35);
 
   --banner-bg: #f0efe9;
   --banner-text: #1e1e1e;
@@ -157,7 +161,7 @@ section:first-of-type {
   color: var(--banner-text);
   border-bottom: 1px solid var(--border);
   margin-bottom: var(--space-3);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .open-to-work-banner p {
@@ -199,6 +203,7 @@ section:first-of-type {
 .avatar {
   width: 84px;
   height: auto;
+  cursor: pointer;
 }
 
 /* While the minesweeper is open, shrink the avatar to the button-row height
@@ -206,6 +211,46 @@ section:first-of-type {
 .avatar.ms-shrunk {
   width: auto;
   height: 28px;
+}
+
+.avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar-hint {
+  position: relative;
+  background: var(--banner-bg);
+  color: var(--background);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.35em 0.75em;
+  border-radius: 0;
+  white-space: nowrap;
+  transform: translateY(8px);
+}
+
+.avatar-hint::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 8px 6px 0;
+  border-style: solid;
+  border-color: transparent var(--banner-bg) transparent transparent;
+}
+
+@media (max-width: 480px) {
+  .avatar-hint::before {
+    border-width: 6px 8px 6px 0;
+    border-color: transparent var(--banner-bg) transparent transparent;
+    left: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 .header-links {
@@ -403,7 +448,7 @@ em {
    ========================================================================== */
 
 .minesweeper-section {
-  margin-top: 0; /* sits right under the header row, full content width */
+  margin-top: 0;
 }
 
 .ms-header {
@@ -411,6 +456,12 @@ em {
   justify-content: space-between;
   align-items: baseline;
   margin-bottom: var(--space-2);
+}
+
+.ms-button-group {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
 }
 
 .ms-status {
@@ -430,15 +481,30 @@ em {
   font-size: 1rem;
 }
 
-.ms-replay {
+.ms-replay,
+.ms-close {
   font-size: 0.85rem;
+  padding: 0.2rem 0.1rem;
+  margin-top: 0.15rem;
+  color: var(--muted);
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  background: none;
+  border: none;
+}
+
+.ms-replay:hover,
+.ms-close:hover {
+  color: var(--accent);
 }
 
 .ms-board {
   display: grid;
-  gap: 1px;
-  background: var(--border);
+  gap: 0;
   border: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
   width: 100%;
   user-select: none;
   -webkit-touch-callout: none;
@@ -450,13 +516,22 @@ em {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--surface);
+  background: var(--surface-revealed);
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
   line-height: 1;
   /* faster taps on mobile (no double-tap-zoom delay) */
   touch-action: manipulation;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.ms-cell.revealed {
+  border-right-color: var(--border-faded);
+  border-bottom-color: var(--border-faded);
 }
 
 .ms-cell.hidden-cell {
@@ -480,6 +555,7 @@ em {
   height: 100%;
   object-fit: cover;
   display: block;
+  overflow: hidden;
 }
 
 .ms-cell.mine.exploded {
@@ -523,10 +599,6 @@ em {
     padding-left: 16px;
     padding-right: 16px;
     padding-top: var(--space-3);
-  }
-
-  .open-to-work-banner {
-    font-size: 0.8rem;
   }
 
   .name {

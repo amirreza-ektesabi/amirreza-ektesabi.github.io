@@ -46,17 +46,17 @@
   <!-- ============ Header ============ -->
   <header class="site-header">
     <div class="header-top">
-      <img
-        class="avatar"
-        src="image.png"
-        alt="Amirreza Ektesabi"
-        width="84"
-      />
+      <div class="avatar-row">
+        <img
+          class="avatar"
+          src="image.png"
+          alt="Amirreza Ektesabi"
+          width="84"
+        />
+        <div class="avatar-hint" id="avatar-hint">click me!</div>
+      </div>
 
       <div class="header-buttons">
-        <button id="play-toggle" class="theme-toggle" type="button" aria-pressed="false">
-          [play]
-        </button>
         <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
           [dark]
         </button>
@@ -67,7 +67,10 @@
     <section id="minesweeper" class="minesweeper-section" hidden>
       <div class="ms-header">
         <span id="ms-status" class="ms-status">mines: 0</span>
-        <a href="#" id="ms-replay" class="ms-replay">[replay]</a>
+        <div class="ms-button-group">
+          <button id="ms-replay" class="ms-replay" type="button">[replay]</button>
+          <button id="ms-close" class="ms-close" type="button" hidden>[close]</button>
+        </div>
       </div>
       <div id="ms-board" class="ms-board"></div>
       <p class="ms-hint">click to reveal &middot; right-click or hold to flag</p>
