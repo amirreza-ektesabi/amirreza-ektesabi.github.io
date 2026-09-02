@@ -214,6 +214,36 @@ section:first-of-type {
   color: var(--accent);
 }
 
+.avatar-bubble.ms-mode {
+  flex: 0 1 auto;
+  min-width: 0;
+  align-self: center;
+  font-size: 0.65rem;
+  line-height: 1.3;
+  padding: 0.3em 0.6em;
+  max-width: 36ch;
+  transform: none;
+}
+
+.avatar-bubble.ms-mode .bubble-text {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.bubble-short {
+  display: none;
+}
+
+.avatar-bubble.ms-mode .bubble-full {
+  display: none;
+}
+
+.avatar-bubble.ms-mode .bubble-short {
+  display: inline;
+}
+
 .header-links {
   margin-top: var(--space-2);
   display: flex;
@@ -596,6 +626,15 @@ em {
   .avatar-bubble::before {
     top: 2.25rem;
     left: -7px;
+  }
+
+  .avatar-bubble.ms-mode {
+    margin-top: 0;
+    max-width: 24ch;
+  }
+
+  .avatar-bubble.ms-mode::before {
+    top: 50%;
   }
 
   section {

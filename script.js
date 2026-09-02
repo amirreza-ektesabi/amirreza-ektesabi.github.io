@@ -442,7 +442,7 @@
       playToggle.textContent = "[close]";
       playToggle.setAttribute("aria-pressed", "true");
       playToggle.setAttribute("aria-label", "Close minesweeper");
-      bubbleEl.hidden = true;
+      bubbleEl.classList.add("ms-mode");
       startGame();
     } else {
       section.setAttribute("hidden", "");
@@ -450,7 +450,7 @@
       playToggle.textContent = "[play]";
       playToggle.setAttribute("aria-pressed", "false");
       playToggle.setAttribute("aria-label", "Play minesweeper");
-      bubbleEl.hidden = false;
+      bubbleEl.classList.remove("ms-mode");
     }
   }
 
