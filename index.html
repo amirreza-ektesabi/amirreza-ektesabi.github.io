@@ -34,13 +34,6 @@
 </head>
 <body>
 
-  <!-- ============ Open to Work Banner ============ -->
-  <div id="open-to-work" class="open-to-work-banner">
-    <p>
-      <span class="banner-bullet">▪</span> Hi! Currently looking for a Backend role working with Python, either fully remote or with a company based in Shiraz, Iran.
-    </p>
-  </div>
-
   <main>
 
   <!-- ============ Header ============ -->
@@ -53,11 +46,14 @@
           alt="Amirreza Ektesabi"
           width="84"
         />
-        <div class="avatar-hint" id="avatar-hint">click me!</div>
+        <div class="avatar-bubble" id="avatar-bubble"><span class="bubble-bullet">▪</span> Hi! Currently looking for a Backend role working with Python, either fully remote or with a company based in Shiraz, Iran.</div>
       </div>
 
       <div class="header-buttons">
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false">
+        <button id="play-toggle" class="header-button" type="button" aria-pressed="false" aria-label="Play minesweeper">
+          [play]
+        </button>
+        <button id="theme-toggle" class="header-button" type="button" aria-pressed="false">
           [dark]
         </button>
       </div>
@@ -69,7 +65,6 @@
         <span id="ms-status" class="ms-status">mines: 0</span>
         <div class="ms-button-group">
           <button id="ms-replay" class="ms-replay" type="button">[replay]</button>
-          <button id="ms-close" class="ms-close" type="button" hidden>[close]</button>
         </div>
       </div>
       <div id="ms-board" class="ms-board"></div>
@@ -193,7 +188,7 @@
 
     <div class="skill-group">
       <p class="skill-group-title">Backend</p>
-      <p class="skill-list">Python · Django · Django REST Framework · Django Channels · Celery · WebSocket</p>
+      <p class="skill-list">Python · Django · Django REST Framework · Pydantic · Django Channels · Celery · WebSocket</p>
     </div>
 
     <div class="skill-group">

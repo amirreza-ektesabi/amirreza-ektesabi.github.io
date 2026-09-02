@@ -19,8 +19,8 @@
   --space-4: 3rem;
   --space-5: 4.5rem;
 
-  --banner-bg: #10120f;
-  --banner-text: #f0efe9;
+  --bubble-bg: #10120f;
+  --bubble-text: #f0efe9;
 }
 
 [data-theme="dark"] {
@@ -34,8 +34,8 @@
   --border: #2a2c26;
   --border-faded: rgba(42, 44, 38, 0.35);
 
-  --banner-bg: #f0efe9;
-  --banner-text: #1e1e1e;
+  --bubble-bg: #f0efe9;
+  --bubble-text: #1e1e1e;
 }
 
 /* ==========================================================================
@@ -150,37 +150,6 @@ section:first-of-type {
 }
 
 /* ==========================================================================
-   Open to Work Banner
-   ========================================================================== */
-
-.open-to-work-banner {
-  width: 100%;
-  padding: var(--space-2) var(--space-2);
-  background: var(--surface);
-  background: var(--banner-bg);
-  color: var(--banner-text);
-  border-bottom: 1px solid var(--border);
-  margin-bottom: var(--space-3);
-  font-size: 0.8rem;
-}
-
-.open-to-work-banner p {
-  margin: 0 auto;
-  max-width: 50ch;
-  min-width: 320px;
-}
-
-.banner-bullet {
-  color: var(--accent);
-}
-
-@media (min-width: 900px) {
-  .open-to-work-banner p {
-    max-width: 70ch;
-  }
-}
-
-/* ==========================================================================
    Header
    ========================================================================== */
 
@@ -195,7 +164,6 @@ section:first-of-type {
   gap: var(--space-2);
 }
 
-/* The hidden attribute must win even over author display rules (e.g. img) */
 [hidden] {
   display: none !important;
 }
@@ -203,11 +171,8 @@ section:first-of-type {
 .avatar {
   width: 84px;
   height: auto;
-  cursor: pointer;
 }
 
-/* While the minesweeper is open, shrink the avatar to the button-row height
-   instead of hiding it */
 .avatar.ms-shrunk {
   width: auto;
   height: 28px;
@@ -219,20 +184,22 @@ section:first-of-type {
   gap: 0.75rem;
 }
 
-.avatar-hint {
+.avatar-bubble {
   position: relative;
-  background: var(--banner-bg);
-  color: var(--background);
+  background: var(--bubble-bg);
+  color: var(--bubble-text);
   font-family: inherit;
   font-size: 0.8rem;
-  font-weight: 700;
-  padding: 0.35em 0.75em;
+  font-weight: 400;
+  line-height: 1.45;
+  padding: 0.5em 0.75em;
   border-radius: 0;
-  white-space: nowrap;
+  max-width: min(48ch, 100%);
+  white-space: normal;
   transform: translateY(8px);
 }
 
-.avatar-hint::before {
+.avatar-bubble::before {
   content: "";
   position: absolute;
   left: -8px;
@@ -240,17 +207,11 @@ section:first-of-type {
   transform: translateY(-50%);
   border-width: 6px 8px 6px 0;
   border-style: solid;
-  border-color: transparent var(--banner-bg) transparent transparent;
+  border-color: transparent var(--bubble-bg) transparent transparent;
 }
 
-@media (max-width: 480px) {
-  .avatar-hint::before {
-    border-width: 6px 8px 6px 0;
-    border-color: transparent var(--banner-bg) transparent transparent;
-    left: -8px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+.bubble-bullet {
+  color: var(--accent);
 }
 
 .header-links {
@@ -261,10 +222,10 @@ section:first-of-type {
 }
 
 /* ==========================================================================
-   Theme toggle
+   Header buttons (play, theme toggle)
    ========================================================================== */
 
-.theme-toggle {
+.header-button {
   appearance: none;
   background: none;
   border: none;
@@ -277,11 +238,11 @@ section:first-of-type {
   white-space: nowrap;
 }
 
-.theme-toggle:hover {
+.header-button:hover {
   color: var(--accent);
 }
 
-.theme-toggle:focus-visible {
+.header-button:focus-visible {
   outline: 1px dashed var(--accent);
   outline-offset: 3px;
 }
@@ -289,7 +250,7 @@ section:first-of-type {
 .header-buttons {
   display: flex;
   gap: var(--space-2);
-  margin-left: auto; /* stay right-aligned even when the avatar is hidden */
+  margin-left: auto;
 }
 
 /* ==========================================================================
@@ -481,8 +442,7 @@ em {
   font-size: 1rem;
 }
 
-.ms-replay,
-.ms-close {
+.ms-replay {
   font-size: 0.85rem;
   padding: 0.2rem 0.1rem;
   margin-top: 0.15rem;
@@ -494,8 +454,7 @@ em {
   border: none;
 }
 
-.ms-replay:hover,
-.ms-close:hover {
+.ms-replay:hover {
   color: var(--accent);
 }
 
@@ -521,7 +480,6 @@ em {
   font-weight: 700;
   cursor: pointer;
   line-height: 1;
-  /* faster taps on mobile (no double-tap-zoom delay) */
   touch-action: manipulation;
   border-right: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -562,7 +520,6 @@ em {
   background: #e24b4a;
 }
 
-/* On a win, highlight the revealed mine cells with the main accent color */
 .ms-board.win .ms-cell.mine {
   background: var(--accent);
 }
@@ -607,6 +564,38 @@ em {
 
   .avatar {
     width: 64px;
+    margin-top: 1.5rem;
+  }
+
+  .avatar.ms-shrunk {
+    margin-top: 0.35rem;
+  }
+
+  .header-top {
+    position: relative;
+    align-items: flex-start;
+  }
+
+  .header-buttons {
+    position: absolute;
+    top: 0.15rem;
+    right: 0;
+  }
+
+  .avatar-row {
+    align-items: flex-start;
+  }
+
+  .avatar-bubble {
+    flex: 1;
+    max-width: none;
+    margin-top: 2.8rem;
+    transform: none;
+  }
+
+  .avatar-bubble::before {
+    top: 2.25rem;
+    left: -7px;
   }
 
   section {

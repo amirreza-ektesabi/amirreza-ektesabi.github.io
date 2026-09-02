@@ -53,11 +53,11 @@
   var boardEl = document.getElementById("ms-board");
   var statusEl = document.getElementById("ms-status");
   var replayEl = document.getElementById("ms-replay");
-  var msClose = document.getElementById("ms-close");
+  var playToggle = document.getElementById("play-toggle");
   var avatarEl = document.querySelector(".avatar");
-  var hintEl = document.getElementById("avatar-hint");
+  var bubbleEl = document.getElementById("avatar-bubble");
 
-  if (!msClose || !section || !boardEl || !statusEl || !replayEl || !avatarEl || !hintEl) return;
+  if (!playToggle || !section || !boardEl || !statusEl || !replayEl || !avatarEl || !bubbleEl) return;
 
   var cols = 0;
   var rows = 0;
@@ -69,7 +69,6 @@
   var revealedCount = 0;
   var flaggedCount = 0;
   var initialized = false;
-  var hintDismissed = false;
 
   function index(r, c) {
     return r * cols + c;
@@ -440,24 +439,22 @@
     if (isHidden) {
       section.removeAttribute("hidden");
       avatarEl.classList.add("ms-shrunk");
-      msClose.hidden = false;
-      hintDismissed = true;
-      hintEl.hidden = true;
+      playToggle.textContent = "[close]";
+      playToggle.setAttribute("aria-pressed", "true");
+      playToggle.setAttribute("aria-label", "Close minesweeper");
+      bubbleEl.hidden = true;
       startGame();
     } else {
       section.setAttribute("hidden", "");
       avatarEl.classList.remove("ms-shrunk");
-      msClose.hidden = true;
-      if (!hintDismissed) hintEl.hidden = false;
+      playToggle.textContent = "[play]";
+      playToggle.setAttribute("aria-pressed", "false");
+      playToggle.setAttribute("aria-label", "Play minesweeper");
+      bubbleEl.hidden = false;
     }
   }
 
-  msClose.addEventListener("click", function (e) {
-    e.stopPropagation();
-    toggleSection();
-  });
-
-  avatarEl.addEventListener("click", function () {
+  playToggle.addEventListener("click", function () {
     if (!initialized) startGame();
     toggleSection();
   });
